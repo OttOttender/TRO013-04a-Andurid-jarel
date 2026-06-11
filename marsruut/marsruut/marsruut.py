@@ -212,15 +212,20 @@ class Marsruut(Node):
                     '[POORDE_2] Valmis! → TEEKOND LÕPETATUD'
                 )
                 self.olek = OLEK_VALMIS
-
+                self.timer.cancel()
+                
         # ── Olek 4: VALMIS — seisa paigal ───────────────────────────────
         elif self.olek == OLEK_VALMIS:
-            cmd.linear.x  = 0.0
+            cmd.linear.x = 0.0
             cmd.angular.z = 0.0
+            self.cmd_pub.publish(cmd)
+
             self.get_logger().info(
-                'OLEK_VALMIS: Robot on teekonna lõpetanud. Seisan paigal.',
-                throttle_duration_sec=5.0
+                'OLEK_VALMIS: Robot on teekonna lõpetanud. Seisan paigal.'
             )
+
+            self.timer.cancel()
+            return
 
         self.cmd_pub.publish(cmd)
 

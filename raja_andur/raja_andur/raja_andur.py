@@ -44,7 +44,7 @@ class RajaAndur(Node):
         )
 
         # Tabeli trükkimise timer — üks kord sekundis
-        self.timer = self.create_timer(1.0, self.tryki_tabel)
+        self.timer = self.create_timer(1.0, self.print_tabel)
 
         # Viimane sektori tulemus
         self.sektori_kaugused = {
@@ -109,7 +109,7 @@ class RajaAndur(Node):
         else:
             return '[OK]'
 
-    def tryki_tabel(self):
+    def print_tabel(self):
         """Trükib sektori kauguste tabeli üks kord sekundis."""
         if self.viimane_scan is None:
             self.get_logger().info('Ootan /scan andmeid...')
